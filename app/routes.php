@@ -43,6 +43,12 @@ Route::group(array("before" => "guest"), function()
 /* Routes accessible AFTER logging in */
 Route::group(array("before" => "auth"), function()
 {
+    //Google 2FA
+    Route::get('/2fa/enable', 'Google2FAController@enableTwoFactor');
+    Route::get('/2fa/disable', 'Google2FAController@disableTwoFactor');
+    Route::get('/2fa/validate', 'Auth\AuthController@getValidateToken');
+    Route::post('/2fa/validate', array('uses' => 'Auth\AuthController@postValidateToken'));
+
     Route::any('/home', array(
         "as" => "user.home",
         "uses" => "UserController@homeAction"
