@@ -42,6 +42,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->getKey();
 	}
+	
+	/**
+	 * Check if user has enables 2FA privacy.
+	 *
+	 * @return mixed
+	 */
+	public function google2fa_secret()
+	{
+		if ($this->google2fa_secret){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 	/**
 	 * Get the password for the user.

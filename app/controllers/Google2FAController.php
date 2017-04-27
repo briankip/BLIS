@@ -1,25 +1,35 @@
 <?php
 
-use Crypt;
-use Google2FA;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use \ParagonIE\ConstantTime\Base32;
 
 class Google2FAController extends \BaseController {
 
+    /**
+     * Show the index page
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        //
+        return View::make('2FA.index');
+    }
+
+
 	 /**
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function enableTwoFactor(Request $request)
+    public function enableTwoFactor()
     {
         //generate new secret
         $secret = $this->generateSecret();
 
         //get user
-        $user = $request->user();
+        $user = Auth::user();
 
         //encrypt and then save secret
         $user->google2fa_secret = Crypt::encrypt($secret);
@@ -27,14 +37,18 @@ class Google2FAController extends \BaseController {
 
         //generate image for QR barcode
         $imageDataUri = Google2FA::getQRCodeInline(
-            $request->getHttpHost(),
+            Request::getHttpHost(),
             $user->email,
             $secret,
             200
         );
 
-        return view('2fa/enableTwoFactor', ['image' => $imageDataUri,
-            'secret' => $secret]);
+        return View::make('2FA/enableTwoFactor',
+            array(
+                'image' => $imageDataUri,
+                'secret' => $secret)
+            ); 
+            
     }
 
     /**
@@ -42,15 +56,15 @@ class Google2FAController extends \BaseController {
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function disableTwoFactor(Request $request)
+    public function disableTwoFactor()
     {
-        $user = $request->user();
+        $user = Auth::user();
 
         //make secret column blank
         $user->google2fa_secret = null;
         $user->save();
 
-        return view('2fa/disableTwoFactor');
+        return View::make('2FA.disableTwoFactor');
     }
 
     /**
@@ -64,7 +78,4 @@ class Google2FAController extends \BaseController {
 
         return Base32::encodeUpper($randomBytes); 
     }
-}
-
-
 }

@@ -44,7 +44,14 @@ Route::group(array("before" => "guest"), function()
 Route::group(array("before" => "auth"), function()
 {
     //Google 2FA
-    Route::get('/2fa/enable', 'Google2FAController@enableTwoFactor');
+    Route::get('/2fa', array(
+        "as" => "2fa.index",
+        "uses" => 'Google2FAController@index'
+    ));
+    Route::get('/2fa/enable', array(
+        "as" => "2fa.enable",
+        "uses" => 'Google2FAController@enableTwoFactor'
+    ));
     Route::get('/2fa/disable', 'Google2FAController@disableTwoFactor');
     Route::get('/2fa/validate', 'Auth\AuthController@getValidateToken');
     Route::post('/2fa/validate', array('uses' => 'Auth\AuthController@postValidateToken'));

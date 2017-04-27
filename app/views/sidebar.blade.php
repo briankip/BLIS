@@ -46,6 +46,7 @@
 		case 'assign':
 		case 'user': 
 		case 'role': 
+		case '2fa':
 			$active[6] = "active"; break;
 		case 'supplier': 
 		case 'item': 
@@ -56,6 +57,7 @@
 		case 'controlresults':
 		case 'control':
 		case 'lot': $active[8] = "active"; break;
+
 	}
 ?>
 	<ul class="nav nav-sidebar">
@@ -354,6 +356,12 @@
 						<div>
 							<a href="{{ URL::route("role.assign")}}">
 								<span class="glyphicon glyphicon-tag"></span> {{trans('messages.assign-roles')}}</a>
+						</div>
+					</li>
+					<li>
+						<div>
+							<a href="{{ URL::route("2fa.index")}}">
+								<span class="glyphicon glyphicon-tag"></span> {{trans('messages.privacy')}}</a>
 						</div>
 					</li>
 					@endif

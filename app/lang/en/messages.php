@@ -720,4 +720,12 @@ return array(
     'volume'          =>    'Volume',
     'date-collected'  =>    'Date Collected',
     'blood-details'   =>    'Blood Details',
+
+    /**
+    * 2FA 
+    **/
+    '2fa' => '2FA',
+    '2fa-privacy-enable' => 'Enable 2FA privacy',
+    'privacy' => 'Privacy'
+
 );
