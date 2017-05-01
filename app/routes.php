@@ -37,6 +37,10 @@ Route::group(array("before" => "guest"), function()
         "as" => "user.login",
         "uses" => "UserController@loginAction"
     ));
+
+    Route::get('register', 'UserController@register');
+    Route::post('register', 'UserController@savePatient');
+    Route::post('sendmail', 'EmailController@send');
     
 });
 

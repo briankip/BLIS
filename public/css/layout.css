@@ -157,6 +157,16 @@ label, input {
         text-align: center;
         position:relative;
     }
+    .login-page .register {
+        background: #FFFFFF;
+        color: #333333;
+        width: 651px;
+        margin: auto;
+        margin-top:30px;
+        border: 1px solid #666666;
+        text-align: center;
+        position:relative;
+    }
 
         .login-page .login-form .form-head,
         .login-page .login-form form {

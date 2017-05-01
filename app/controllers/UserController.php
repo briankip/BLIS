@@ -47,6 +47,65 @@ class UserController extends Controller {
         return View::make("user.home");
     }
 
+    /**
+     * Load register page
+     *
+     * @return Response
+     */
+    public function register(){
+        return View::make('register.index');
+    }
+
+     /**
+     * Register patient
+     *
+     * @return Response
+     */
+    public function savePatient(){
+        return View::make('2FA.enable');
+        //
+        // $rules = array(
+        //     'patient_number' => 'required|unique:patients,patient_number',
+        //     'name'       => 'required',
+        //     'gender' => 'required'
+        // );
+        // $validator = Validator::make(Input::all(), $rules);
+
+        // if ($validator->fails()) {
+
+        //     return Redirect::back()->withErrors($validator)->withInput(Input::all());
+        // } else {
+        //     // store
+        //     $patient = new Patient;
+        //     $patient->patient_number = Input::get('patient_number');
+        //     $patient->name = Input::get('name');
+        //     $patient->gender = Input::get('gender');
+        //     if(Input::get('ageselector')==0){
+        //         //calculate date from age
+        //         $age=Input::get('age');
+        //         $patient->dob =$this->getDobFromAge($age,date("Y-m-d"));
+        //     }else{
+        //         $patient->dob = Input::get('dob');
+        //     }
+            
+        //     $patient->email = Input::get('email');
+        //     $patient->address = Input::get('address');
+        //     $patient->phone_number = Input::get('phone_number');
+        //     $patient->created_by = Auth::user()->id;
+
+        //     try{
+        //         $patient->save();
+        //     $url = Session::get('SOURCE_URL');
+        //     return Redirect::to($url)
+        //     ->with('message', 'Successfully created patient!');
+        //     }catch(QueryException $e){
+        //         Log::error($e);
+        //     }
+        // }
+            
+            // redirect
+    }
+
 
     /**
      * Display a listing of the users.
